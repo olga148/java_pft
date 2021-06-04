@@ -15,6 +15,7 @@ public class ApplicationManager {
     private ContactHelper contactHelper;
     public NavigationHelper navigationHelper;
     private GroupHelper groupHelper;
+    private SessionHelper sessionHelper;
 
     public void init() {
         wd = new FirefoxDriver();
@@ -22,16 +23,8 @@ public class ApplicationManager {
         groupHelper = new GroupHelper(wd);
         navigationHelper = new NavigationHelper(wd);
         contactHelper = new ContactHelper(wd);
-        login("admin", "secret");
-    }
-
-    private void login(String username, String password) {
-        wd.get("http://localhost/addressbook/group.php");
-        wd.findElement(By.name("user")).clear();
-        wd.findElement(By.name("user")).sendKeys(username);
-        wd.findElement(By.name("pass")).clear();
-        wd.findElement(By.name("pass")).sendKeys(password);
-        wd.findElement(By.xpath("//input[@value='Login']")).click();
+        sessionHelper = new SessionHelper(wd);
+        sessionHelper.login("admin", "secret");
     }
 
     public void stop() {
