@@ -13,7 +13,7 @@ public class ApplicationManager {
     WebDriver wd;
 
     private ContactHelper contactHelper;
-    private NavigationHelper navigationHelper;
+    public NavigationHelper navigationHelper;
     private GroupHelper groupHelper;
 
     public void init() {
@@ -54,10 +54,6 @@ public class ApplicationManager {
         } catch (NoAlertPresentException e) {
             return false;
         }
-    }
-
-    public void gotoContactPage() {
-        wd.findElement(By.linkText("add new")).click();
     }
 
     public GroupHelper getGroupHelper() {
