@@ -44,4 +44,14 @@ public class ContactHelper extends HelperBase {
         click(By.cssSelector("input[value='Delete']"));
         wd.switchTo().alert().accept();
     }
+
+    public void createContact(ContactData contact) {
+        fillContactForm(contact);
+        submitContactCreation();
+        returnToHomePage();
+    }
+
+    public boolean isThereAContact() {
+        return isElementPresent(By.name("selected[]"));
+    }
 }
